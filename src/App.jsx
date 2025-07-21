@@ -30,6 +30,9 @@ const portfolioData = {
     "MongoDB",
     "Express",
     "Tailwind CSS",
+    "Socket.IO",
+    "GSAP",
+    "Appwrite",
   ],
   projects: [
     {
