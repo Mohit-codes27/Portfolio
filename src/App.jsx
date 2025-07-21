@@ -32,39 +32,39 @@ const portfolioData = {
     "Tailwind CSS",
   ],
   projects: [
-  {
-    name: "Uber Clone",
-    description:
-      "Developed a full-featured Uber clone using the MERN stack with real-time location tracking and ride-booking functionality using Google Maps API.",
-    tech: ["React", "Node.js", "MongoDB", "Google Maps API"],
-    link: "https://github.com/Mohit-codes27/Uber-clone",
-    demo: "https://your-uber-demo-link.com",
-  },
-  {
-    name: "Restroom Finder",
-    description:
-      "Created a location-based app to find nearby restrooms using geolocation and filtering. Designed for mobile responsiveness with a user-friendly map view.",
-    tech: ["React", "Node.js", "Tailwind", "Map API"],
-    link: "https://github.com/Mohit-codes27/Restroom-finder",
-    demo: "https://your-restroom-finder-demo.com",
-  },
-  {
-    name: "3D Animated Website Clone",
-    description:
-      "Recreated a visually stunning website with smooth 3D animations using GSAP and React. Focused on scroll-based animations and performance optimization.",
-    tech: ["React", "GSAP", "HTML", "CSS"],
-    link: "https://github.com/Mohit-codes27/gsap-3d-clone",
-    demo: "https://your-3d-clone-demo.com",
-  },
-  {
-    name: "Blog Platform (Appwrite)",
-    description:
-      "Built a basic blog site using Appwrite backend for authentication and database. Includes post creation, editing, and real-time syncing (UI still in progress).",
-    tech: ["React", "Appwrite", "Tailwind CSS"],
-    link: "https://github.com/Mohit-codes27/blog-app-appwrite",
-    demo: "https://your-blog-demo.com",
-  },
-],
+    {
+      name: "Uber Clone",
+      description:
+        "Developed a full-featured Uber clone using the MERN stack with real-time location tracking and ride-booking functionality using Google Maps API.",
+      tech: ["React", "Node.js", "MongoDB", "Google Maps API"],
+      link: "https://github.com/Mohit-codes27/Uber-clone",
+      demo: "https://your-uber-demo-link.com",
+    },
+    {
+      name: "Restroom Finder",
+      description:
+        "Created a location-based app to find nearby restrooms using geolocation and filtering. Designed for mobile responsiveness with a user-friendly map view.",
+      tech: ["React", "Node.js", "Tailwind", "Map API"],
+      link: "https://github.com/Mohit-codes27/Restroom-finder",
+      demo: "https://your-restroom-finder-demo.com",
+    },
+    {
+      name: "3D Animated Website Clone",
+      description:
+        "Recreated a visually stunning website with smooth 3D animations using GSAP and React. Focused on scroll-based animations and performance optimization.",
+      tech: ["React", "GSAP", "HTML", "CSS"],
+      link: "https://github.com/Mohit-codes27/gsap-3d-clone",
+      demo: "https://your-3d-clone-demo.com",
+    },
+    {
+      name: "Blog Platform (Appwrite)",
+      description:
+        "Built a basic blog site using Appwrite backend for authentication and database. Includes post creation, editing, and real-time syncing (UI still in progress).",
+      tech: ["React", "Appwrite", "Tailwind CSS"],
+      link: "https://github.com/Mohit-codes27/blog-app-appwrite",
+      demo: "https://your-blog-demo.com",
+    },
+  ],
 
   contact: {
     email: "mohitmorya56@gmail.com",
@@ -170,9 +170,8 @@ export default function ChatPortfolio() {
       lowerInput.includes("background")
     ) {
       return {
-  text: "I have hands-on experience leading frontend and full-stack development projects, currently serving as the Tech Team Head during my internship. I specialize in building modern, scalable web applications using the MERN stack, while also mentoring teammates and managing end-to-end delivery.\n\nKey highlights:\n• Led development of 3+ full-stack web applications using React.js, Node.js, and MongoDB\n• Headed a team of 5+ developers during internship projects, ensuring timely and quality releases\n• Built and deployed responsive, user-friendly UIs with Tailwind CSS and GSAP animations\n• Implemented Appwrite services for real-time backend features like authentication and storage\n• Reduced page load time by 30% through frontend performance optimization\n• Streamlined deployment workflows using GitHub Actions and CI/CD practices",
-};
-
+        text: "I have hands-on experience leading frontend and full-stack development projects, currently serving as the Tech Team Head during my internship. I specialize in building modern, scalable web applications using the MERN stack, while also mentoring teammates and managing end-to-end delivery.\n\nKey highlights:\n• Led development of 3+ full-stack web applications using React.js, Node.js, and MongoDB\n• Headed a team of 5+ developers during internship projects, ensuring timely and quality releases\n• Built and deployed responsive, user-friendly UIs with Tailwind CSS and GSAP animations\n• Implemented Appwrite services for real-time backend features like authentication and storage\n• Reduced page load time by 30% through frontend performance optimization\n• Streamlined deployment workflows using GitHub Actions and CI/CD practices",
+      };
     }
 
     return {
@@ -223,48 +222,48 @@ export default function ChatPortfolio() {
         <div className="space-y-4">
           <p className="mb-4">{message.text}</p>
           {portfolioData.projects.map((project, index) => (
-        <div
-          key={index}
-          className="bg-gray-700/50 rounded-lg p-4 border border-gray-600"
-        >
-          <div className="flex items-start justify-between mb-2">
-            <h4 className="font-semibold text-white">{project.name}</h4>
-            <div className="flex gap-2">
-          <Button
-            size="sm"
-            variant="ghost"
-            className="h-6 px-2 text-xs text-blue-400 hover:text-blue-300"
-            onClick={() => window.open(project.link, "_blank")}
-          >
-            <Github className="w-3 h-3 mr-1" />
-            Code
-          </Button>
-          <Button
-            size="sm"
-            variant="ghost"
-            className="h-6 px-2 text-xs text-green-400 hover:text-green-300"
-            onClick={() => window.open(project.demo, "_blank")}
-          >
-            <ExternalLink className="w-3 h-3 mr-1" />
-            Demo
-          </Button>
+            <div
+              key={index}
+              className="bg-gray-700/50 rounded-lg p-4 border border-gray-600"
+            >
+              <div className="flex items-start justify-between mb-2">
+                <h4 className="font-semibold text-white">{project.name}</h4>
+                <div className="flex gap-2">
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    className="h-6 px-2 text-xs text-blue-400 hover:text-blue-300"
+                    onClick={() => window.open(project.link, "_blank")}
+                  >
+                    <Github className="w-3 h-3 mr-1" />
+                    Code
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    className="h-6 px-2 text-xs text-green-400 hover:text-green-300"
+                    onClick={() => window.open(project.demo, "_blank")}
+                  >
+                    <ExternalLink className="w-3 h-3 mr-1" />
+                    Demo
+                  </Button>
+                </div>
+              </div>
+              <p className="text-gray-300 text-sm mb-3">
+                {project.description}
+              </p>
+              <div className="flex flex-wrap gap-1">
+                {project.tech.map((tech) => (
+                  <Badge
+                    key={tech}
+                    variant="secondary"
+                    className="text-xs bg-gray-600 text-gray-200"
+                  >
+                    {tech}
+                  </Badge>
+                ))}
+              </div>
             </div>
-          </div>
-          <p className="text-gray-300 text-sm mb-3">
-            {project.description}
-          </p>
-          <div className="flex flex-wrap gap-1">
-            {project.tech.map((tech) => (
-          <Badge
-            key={tech}
-            variant="secondary"
-            className="text-xs bg-gray-600 text-gray-200"
-          >
-            {tech}
-          </Badge>
-            ))}
-          </div>
-        </div>
           ))}
         </div>
       );
@@ -301,21 +300,36 @@ export default function ChatPortfolio() {
               <Mail className="w-5 h-5 text-blue-400" />
               <div>
                 <p className="text-sm text-gray-400">Email</p>
-                <p className="text-white cursor-pointer hover:text-gray-500" onClick={()=>window.open(portfolioData.contact.email)}>{portfolioData.contact.email}</p>
+                <p
+                  className="text-white cursor-pointer hover:text-gray-500"
+                  onClick={() => window.open(portfolioData.contact.email)}
+                >
+                  {portfolioData.contact.email}
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-3 p-3 bg-gray-700/50 rounded-lg">
               <Github className="w-5 h-5 text-purple-400" />
               <div>
                 <p className="text-sm text-gray-400 ">GitHub</p>
-                <p className="text-white cursor-pointer hover:text-gray-500" onClick={()=>window.open(portfolioData.contact.github)}>{portfolioData.contact.github}</p>
+                <p
+                  className="text-white cursor-pointer hover:text-gray-500"
+                  onClick={() => window.open(portfolioData.contact.github)}
+                >
+                  {portfolioData.contact.github}
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-3 p-3 bg-gray-700/50 rounded-lg">
               <Linkedin className="w-5 h-5 text-blue-500" />
               <div>
                 <p className="text-sm text-gray-400">LinkedIn</p>
-                <p className="text-white cursor-pointer hover:text-gray-500" onClick={()=>window.open(portfolioData.contact.linkedin)}>{portfolioData.contact.linkedin}</p>
+                <p
+                  className="text-white cursor-pointer hover:text-gray-500"
+                  onClick={() => window.open(portfolioData.contact.linkedin)}
+                >
+                  {portfolioData.contact.linkedin}
+                </p>
               </div>
             </div>
           </div>
