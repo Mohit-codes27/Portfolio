@@ -14,8 +14,10 @@ import {
   Briefcase,
   Phone,
   Brain,
+  Menu,
+  X,
 } from "lucide-react";
-import "./index.css";
+import './index.css'
 
 const portfolioData = {
   name: "Mohit Morya",
@@ -96,6 +98,7 @@ export default function ChatPortfolio() {
   ]);
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const [showQuickActions, setShowQuickActions] = useState(false);
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -196,6 +199,7 @@ export default function ChatPortfolio() {
     setMessages((prev) => [...prev, userMessage]);
     setInputValue("");
     setIsTyping(true);
+    setShowQuickActions(false);
 
     // Simulate realistic typing delay
     setTimeout(() => {
@@ -227,10 +231,10 @@ export default function ChatPortfolio() {
           {portfolioData.projects.map((project, index) => (
             <div
               key={index}
-              className="bg-gray-700/50 rounded-lg p-4 border border-gray-600"
+              className="bg-gray-700/50 rounded-lg p-3 sm:p-4 border border-gray-600"
             >
-              <div className="flex items-start justify-between mb-2">
-                <h4 className="font-semibold text-white">{project.name}</h4>
+              <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-2 gap-2">
+                <h4 className="font-semibold text-white text-sm sm:text-base">{project.name}</h4>
                 <div className="flex gap-2">
                   <Button
                     size="sm"
@@ -252,7 +256,7 @@ export default function ChatPortfolio() {
                   </Button>
                 </div>
               </div>
-              <p className="text-gray-300 text-sm mb-3">
+              <p className="text-gray-300 text-xs sm:text-sm mb-3">
                 {project.description}
               </p>
               <div className="flex flex-wrap gap-1">
@@ -275,19 +279,19 @@ export default function ChatPortfolio() {
     if (message.type === "skills") {
       return (
         <div>
-          <p className="mb-4">{message.text.split("\n\n")[0]}</p>
-          <div className="grid grid-cols-2 gap-2 mb-4">
+          <p className="mb-4 text-sm sm:text-base">{message.text.split("\n\n")[0]}</p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-4">
             {portfolioData.skills.map((skill) => (
               <Badge
                 key={skill}
                 variant="outline"
-                className="justify-center py-2 border-blue-500/30 text-blue-300"
+                className="justify-center py-2 border-blue-500/30 text-blue-300 text-xs"
               >
                 {skill}
               </Badge>
             ))}
           </div>
-          <p className="text-sm text-gray-400">
+          <p className="text-xs sm:text-sm text-gray-400">
             {message.text.split("\n\n")[1]}
           </p>
         </div>
@@ -297,26 +301,26 @@ export default function ChatPortfolio() {
     if (message.type === "contact") {
       return (
         <div className="space-y-4">
-          <p className="mb-4">{message.text}</p>
+          <p className="mb-4 text-sm sm:text-base">{message.text}</p>
           <div className="space-y-3">
             <div className="flex items-center gap-3 p-3 bg-gray-700/50 rounded-lg">
-              <Mail className="w-5 h-5 text-blue-400" />
-              <div>
-                <p className="text-sm text-gray-400">Email</p>
+              <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400 flex-shrink-0" />
+              <div className="min-w-0 flex-1">
+                <p className="text-xs sm:text-sm text-gray-400">Email</p>
                 <p
-                  className="text-white cursor-pointer hover:text-gray-500"
-                  onClick={() => window.open(portfolioData.contact.email)}
+                  className="text-white cursor-pointer hover:text-gray-500 text-sm sm:text-base break-all"
+                  onClick={() => window.open(`mailto:${portfolioData.contact.email}`)}
                 >
                   {portfolioData.contact.email}
                 </p>
               </div>
             </div>
             <div className="flex items-center gap-3 p-3 bg-gray-700/50 rounded-lg">
-              <Github className="w-5 h-5 text-purple-400" />
-              <div>
-                <p className="text-sm text-gray-400 ">GitHub</p>
+              <Github className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400 flex-shrink-0" />
+              <div className="min-w-0 flex-1">
+                <p className="text-xs sm:text-sm text-gray-400">GitHub</p>
                 <p
-                  className="text-white cursor-pointer hover:text-gray-500"
+                  className="text-white cursor-pointer hover:text-gray-500 text-sm sm:text-base break-all"
                   onClick={() => window.open(portfolioData.contact.github)}
                 >
                   {portfolioData.contact.github}
@@ -324,11 +328,11 @@ export default function ChatPortfolio() {
               </div>
             </div>
             <div className="flex items-center gap-3 p-3 bg-gray-700/50 rounded-lg">
-              <Linkedin className="w-5 h-5 text-blue-500" />
-              <div>
-                <p className="text-sm text-gray-400">LinkedIn</p>
+              <Linkedin className="w-4 h-4 sm:w-5 sm:h-5 text-blue-500 flex-shrink-0" />
+              <div className="min-w-0 flex-1">
+                <p className="text-xs sm:text-sm text-gray-400">LinkedIn</p>
                 <p
-                  className="text-white cursor-pointer hover:text-gray-500"
+                  className="text-white cursor-pointer hover:text-gray-500 text-sm sm:text-base break-all"
                   onClick={() => window.open(portfolioData.contact.linkedin)}
                 >
                   {portfolioData.contact.linkedin}
@@ -340,7 +344,7 @@ export default function ChatPortfolio() {
       );
     }
 
-    return <p className="whitespace-pre-line">{message.text}</p>;
+    return <p className="whitespace-pre-line text-sm sm:text-base">{message.text}</p>;
   };
 
   return (
@@ -359,22 +363,22 @@ export default function ChatPortfolio() {
 
       {/* Main Chat Interface */}
       <div className="relative z-10 flex flex-col h-screen max-w-5xl mx-auto">
-        {/* Enhanced Header */}
-        <div className="flex items-center gap-4 p-6 bg-gray-800/90 backdrop-blur-md border-b border-gray-700/50 shadow-lg">
-          <Avatar className="w-14 h-14 ring-2 ring-blue-500/30">
+        {/* Enhanced Header - Responsive */}
+        <div className="flex items-center gap-2 sm:gap-4 p-3 sm:p-6 bg-gray-800/90 backdrop-blur-md border-b border-gray-700/50 shadow-lg">
+          <Avatar className="w-10 h-10 sm:w-14 sm:h-14 ring-2 ring-blue-500/30">
             <AvatarImage src="/placeholder.svg?height=56&width=56" />
-            <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-600 text-white font-semibold">
+            <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-600 text-white font-semibold text-sm">
               MM
             </AvatarFallback>
           </Avatar>
-          <div className="flex-1">
-            <h1 className="text-white font-bold text-lg">
+          <div className="flex-1 min-w-0">
+            <h1 className="text-white font-bold text-sm sm:text-lg truncate">
               {portfolioData.name}
             </h1>
-            <p className="text-blue-400 text-sm font-medium">
+            <p className="text-blue-400 text-xs sm:text-sm font-medium truncate">
               {portfolioData.title}
             </p>
-            <p className="text-gray-400 text-xs">
+            <p className="text-gray-400 text-xs hidden sm:block">
               {isTyping ? (
                 <span className="flex items-center gap-1">
                   <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
@@ -388,43 +392,44 @@ export default function ChatPortfolio() {
               )}
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-1 sm:gap-2">
             <Button
               variant="ghost"
               size="icon"
-              className="text-gray-400 hover:text-white hover:bg-gray-700/50"
+              className="text-gray-400 hover:text-white hover:bg-gray-700/50 w-8 h-8 sm:w-10 sm:h-10"
               onClick={() =>
                 window.open(portfolioData.contact.github, "_blank")
               }
             >
-              <Github className="w-5 h-5" />
+              <Github className="w-4 h-4 sm:w-5 sm:h-5" />
             </Button>
             <Button
               variant="ghost"
               size="icon"
-              className="text-gray-400 hover:text-white hover:bg-gray-700/50"
+              className="text-gray-400 hover:text-white hover:bg-gray-700/50 w-8 h-8 sm:w-10 sm:h-10"
               onClick={() =>
                 window.open(portfolioData.contact.linkedin, "_blank")
               }
             >
-              <Linkedin className="w-5 h-5" />
+              <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" />
             </Button>
             <Button
               variant="ghost"
               size="icon"
-              className="text-gray-400 hover:text-white hover:bg-gray-700/50"
+              className="text-gray-400 hover:text-white hover:bg-gray-700/50 w-8 h-8 sm:w-10 sm:h-10"
               onClick={() =>
                 window.open(`mailto:${portfolioData.contact.email}`)
               }
             >
-              <Mail className="w-5 h-5" />
+              <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
             </Button>
           </div>
         </div>
-        {/* Messages Container - Fixed height to prevent jumping */}}
+
+        {/* Messages Container - Responsive padding and height */}
         <div
-          className="flex-1 overflow-y-auto p-6 space-y-6"
-          style={{ height: "calc(100vh - 200px)" }}
+          className="flex-1 overflow-y-auto p-3 sm:p-6 space-y-4 sm:space-y-6"
+          style={{ height: "calc(100vh - 180px)" }}
         >
           {messages.map((message) => (
             <div
@@ -433,9 +438,9 @@ export default function ChatPortfolio() {
                 message.sender === "user" ? "justify-end" : "justify-start"
               }`}
             >
-              <div className="flex items-start gap-3 max-w-[85%]">
+              <div className="flex items-start gap-2 sm:gap-3 max-w-[90%] sm:max-w-[85%]">
                 {message.sender === "bot" && (
-                  <Avatar className="w-8 h-8 mt-1 ring-1 ring-blue-500/30">
+                  <Avatar className="w-6 h-6 sm:w-8 sm:h-8 mt-1 ring-1 ring-blue-500/30 flex-shrink-0">
                     <AvatarImage src="/placeholder.svg?height=32&width=32" />
                     <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-600 text-white text-xs">
                       MM
@@ -443,7 +448,7 @@ export default function ChatPortfolio() {
                   </Avatar>
                 )}
                 <div
-                  className={`rounded-2xl px-5 py-4 shadow-lg ${
+                  className={`rounded-2xl px-3 sm:px-5 py-3 sm:py-4 shadow-lg ${
                     message.sender === "user"
                       ? "bg-gradient-to-r from-blue-600 to-blue-700 text-white"
                       : "bg-gray-800/80 backdrop-blur-sm text-gray-100 border border-gray-700/50"
@@ -463,14 +468,14 @@ export default function ChatPortfolio() {
 
           {isTyping && (
             <div className="flex justify-start">
-              <div className="flex items-start gap-3">
-                <Avatar className="w-8 h-8 mt-1 ring-1 ring-blue-500/30">
+              <div className="flex items-start gap-2 sm:gap-3">
+                <Avatar className="w-6 h-6 sm:w-8 sm:h-8 mt-1 ring-1 ring-blue-500/30">
                   <AvatarImage src="/placeholder.svg?height=32&width=32" />
                   <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-600 text-white text-xs">
                     MM
                   </AvatarFallback>
                 </Avatar>
-                <div className="bg-gray-800/80 backdrop-blur-sm rounded-2xl px-5 py-4 border border-gray-700/50">
+                <div className="bg-gray-800/80 backdrop-blur-sm rounded-2xl px-3 sm:px-5 py-3 sm:py-4 border border-gray-700/50">
                   <div className="flex space-x-1">
                     <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" />
                     <div
@@ -488,9 +493,31 @@ export default function ChatPortfolio() {
           )}
           <div ref={messagesEndRef} />
         </div>
-        {/* Quick Actions */}
-        <div className="px-6 pb-4">
-          <div className="flex flex-wrap gap-2 justify-center">
+
+        {/* Quick Actions - Mobile responsive with toggle */}
+        <div className="px-3 sm:px-6 pb-2 sm:pb-4">
+          <div className="sm:hidden mb-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setShowQuickActions(!showQuickActions)}
+              className="w-full bg-gray-800/50 border-gray-600 text-gray-300 hover:bg-gray-700/50 hover:text-white hover:border-blue-500/50"
+            >
+              {showQuickActions ? (
+                <>
+                  <X className="w-4 h-4 mr-2" />
+                  Hide Quick Actions
+                </>
+              ) : (
+                <>
+                  <Menu className="w-4 h-4 mr-2" />
+                  Show Quick Actions
+                </>
+              )}
+            </Button>
+          </div>
+          
+          <div className={`${showQuickActions ? 'flex' : 'hidden'} sm:flex flex-wrap gap-2 justify-center`}>
             {quickActions.map((action) => {
               const IconComponent = action.icon;
               return (
@@ -499,37 +526,38 @@ export default function ChatPortfolio() {
                   variant="outline"
                   size="sm"
                   onClick={() => handleSendMessage(action.query)}
-                  className="bg-gray-800/50 border-gray-600 text-gray-300 hover:bg-gray-700/50 hover:text-white hover:border-blue-500/50"
+                  className="bg-gray-800/50 border-gray-600 text-gray-300 hover:bg-gray-700/50 hover:text-white hover:border-blue-500/50 text-xs sm:text-sm flex-shrink-0"
                 >
-                  <IconComponent className="w-4 h-4 mr-2" />
+                  <IconComponent className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                   {action.label}
                 </Button>
               );
             })}
           </div>
         </div>
-        {/* Enhanced Input - Fixed position */}
-        <div className="p-6 bg-gray-800/90 backdrop-blur-md border-t border-gray-700/50">
-          <div className="flex gap-3">
+
+        {/* Enhanced Input - Mobile responsive */}
+        <div className="p-3 sm:p-6 bg-gray-800/90 backdrop-blur-md border-t border-gray-700/50">
+          <div className="flex gap-2 sm:gap-3">
             <Input
               ref={inputRef}
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder="Ask me about my skills, projects, or experience..."
-              className="flex-1 bg-gray-700/50 border-gray-600 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 rounded-xl"
+              className="flex-1 bg-gray-700/50 border-gray-600 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 rounded-xl text-sm sm:text-base"
             />
             <Button
               onClick={() => handleSendMessage()}
               disabled={!inputValue.trim()}
-              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-xl px-6"
+              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-xl px-4 sm:px-6"
             >
-              <Send className="w-5 h-5" />
+              <Send className="w-4 h-4 sm:w-5 sm:h-5" />
             </Button>
           </div>
-          <p className="text-gray-500 text-xs mt-3 text-center">
-            💡 Try the quick actions above or ask me anything about my
-            development journey!
+          <p className="text-gray-500 text-xs mt-2 sm:mt-3 text-center">
+            💡 <span className="sm:hidden">Use quick actions or ask me anything!</span>
+            <span className="hidden sm:inline">Try the quick actions above or ask me anything about my development journey!</span>
           </p>
         </div>
       </div>
