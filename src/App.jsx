@@ -17,7 +17,7 @@ import {
   Menu,
   X,
 } from "lucide-react";
-import './index.css'
+import "./index.css";
 
 const portfolioData = {
   name: "Mohit Morya",
@@ -38,43 +38,62 @@ const portfolioData = {
   ],
   projects: [
     {
+      name: "Internship Project – Company Website",
+      description:
+        "Developed a complete, responsive website during my internship, tailored to the company's branding and requirements. Worked on both frontend and backend features including authentication, restroom finder, and dashboard UI. Gained hands-on experience working in a real-world development environment.",
+      tech: ["React", "Node.js", "MongoDB", "Tailwind CSS"],
+      link: "https://www.pariharindia.com/", // replace with actual link if available
+      demo: "https://www.pariharindia.com/", // same as link if it's a live site
+      note: "This project was built during my internship. GitHub repository is not available due to company policy.",
+    },
+    {
       name: "Uber Clone",
       description:
         "Developed a full-featured Uber clone using the MERN stack with real-time location tracking and ride-booking functionality using Google Maps API.",
       tech: ["React", "Node.js", "MongoDB", "Google Maps API"],
-      link: "https://github.com/Mohit-codes27/Uber-clone",
-      demo: "https://your-uber-demo-link.com",
-    },
-    {
-      name: "Restroom Finder",
-      description:
-        "Created a location-based app to find nearby restrooms using geolocation and filtering. Designed for mobile responsiveness with a user-friendly map view.",
-      tech: ["React", "Node.js", "Tailwind", "Map API"],
-      link: "https://github.com/Mohit-codes27/Restroom-finder",
-      demo: "https://your-restroom-finder-demo.com",
+      link: "https://github.com/Mohit-codes27/uber-frontend",
+      demo: "https://uber-frontend-chi.vercel.app/",
     },
     {
       name: "3D Animated Website Clone",
       description:
         "Recreated a visually stunning website with smooth 3D animations using GSAP and React. Focused on scroll-based animations and performance optimization.",
       tech: ["React", "GSAP", "HTML", "CSS"],
-      link: "https://github.com/Mohit-codes27/gsap-3d-clone",
-      demo: "https://your-3d-clone-demo.com",
+      link: "https://github.com/Mohit-codes27/thirtysixstudio-clone",
+      demo: "https://thirtysixstudio-clone-theta.vercel.app/",
     },
     {
       name: "Blog Platform (Appwrite)",
       description:
         "Built a basic blog site using Appwrite backend for authentication and database. Includes post creation, editing, and real-time syncing (UI still in progress).",
       tech: ["React", "Appwrite", "Tailwind CSS"],
-      link: "https://github.com/Mohit-codes27/blog-app-appwrite",
-      demo: "https://your-blog-demo.com",
+      link: "https://github.com/Mohit-codes27/appwriteBlog",
+      demo: "https://appwrite-blog-silk.vercel.app/",
+    },
+  ],
+  experience: [
+    
+
+    {
+      company: "Parihar Innovations Pvt. Ltd.",
+      role: "Full Stack Developer Intern",
+      duration: "Jan 2025 - Jul 2025",
+      description:
+        "Contributed to backend APIs using Node.js and MongoDB. Integrated frontend with backend systems, introduced CI/CD practices, and helped deploy apps to cloud platforms.",
+      technologies: [
+        "Node.js",
+        "MongoDB",
+        "GitHub Actions",
+        "React",
+        "Tailwind CSS",
+      ],
     },
   ],
 
   contact: {
     email: "mohitmorya56@gmail.com",
     github: "https://github.com/Mohit-codes27",
-    linkedin: "https://linkedin.com/in/alexjohnson",
+    linkedin: "https://linkedin.com/in/mohit-morya27",
     phone: "+91 8595678178",
   },
 };
@@ -170,11 +189,19 @@ export default function ChatPortfolio() {
         type: "contact",
       };
     }
-
     if (
       lowerInput.includes("experience") ||
-      lowerInput.includes("background")
+      lowerInput.includes("work history") ||
+      lowerInput.includes("job") ||
+      lowerInput.includes("internship")
     ) {
+      return {
+        text: "Here are some of my recent work experiences:",
+        type: "experience",
+      };
+    }
+
+    if (lowerInput.includes("background")) {
       return {
         text: "I have hands-on experience leading frontend and full-stack development projects, currently serving as the Tech Team Head during my internship. I specialize in building modern, scalable web applications using the MERN stack, while also mentoring teammates and managing end-to-end delivery.\n\nKey highlights:\n• Led development of 3+ full-stack web applications using React.js, Node.js, and MongoDB\n• Headed a team of 5+ developers during internship projects, ensuring timely and quality releases\n• Built and deployed responsive, user-friendly UIs with Tailwind CSS and GSAP animations\n• Implemented Appwrite services for real-time backend features like authentication and storage\n• Reduced page load time by 30% through frontend performance optimization\n• Streamlined deployment workflows using GitHub Actions and CI/CD practices",
       };
@@ -234,7 +261,9 @@ export default function ChatPortfolio() {
               className="bg-gray-700/50 rounded-lg p-3 sm:p-4 border border-gray-600"
             >
               <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-2 gap-2">
-                <h4 className="font-semibold text-white text-sm sm:text-base">{project.name}</h4>
+                <h4 className="font-semibold text-white text-sm sm:text-base">
+                  {project.name}
+                </h4>
                 <div className="flex gap-2">
                   <Button
                     size="sm"
@@ -276,10 +305,58 @@ export default function ChatPortfolio() {
       );
     }
 
+    if (message.type === "experience") {
+      return (
+        <div className="space-y-4">
+          <p className="mb-4">{message.text}</p>{" "}
+          {portfolioData.experience.map((item, index) => (
+            <div
+              key={index}
+              className="bg-gray-700/50 rounded-lg p-3 sm:p-4 border border-gray-600"
+            >
+              {" "}
+              <div className="flex flex-col sm:flex-row justify-between mb-1">
+                {" "}
+                <div>
+                  {" "}
+                  <h4 className="text-white font-semibold text-sm sm:text-base">
+                    {item.role}{" "}
+                  </h4>{" "}
+                  <p className="text-xs text-blue-400 font-medium">
+                    {item.company}
+                  </p>{" "}
+                </div>{" "}
+                <p className="text-gray-400 text-xs sm:text-sm">
+                  {item.duration}{" "}
+                </p>{" "}
+              </div>{" "}
+              <p className="text-gray-300 text-xs sm:text-sm mb-2">
+                {item.description}
+              </p>{" "}
+              <div className="flex flex-wrap gap-1">
+                {" "}
+                {item.technologies.map((tech, i) => (
+                  <Badge
+                    key={i}
+                    variant="secondary"
+                    className="text-xs bg-gray-600 text-gray-200"
+                  >
+                    {tech}{" "}
+                  </Badge>
+                ))}{" "}
+              </div>{" "}
+            </div>
+          ))}{" "}
+        </div>
+      );
+    }
+
     if (message.type === "skills") {
       return (
         <div>
-          <p className="mb-4 text-sm sm:text-base">{message.text.split("\n\n")[0]}</p>
+          <p className="mb-4 text-sm sm:text-base">
+            {message.text.split("\n\n")[0]}
+          </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-4">
             {portfolioData.skills.map((skill) => (
               <Badge
@@ -309,7 +386,9 @@ export default function ChatPortfolio() {
                 <p className="text-xs sm:text-sm text-gray-400">Email</p>
                 <p
                   className="text-white cursor-pointer hover:text-gray-500 text-sm sm:text-base break-all"
-                  onClick={() => window.open(`mailto:${portfolioData.contact.email}`)}
+                  onClick={() =>
+                    window.open(`mailto:${portfolioData.contact.email}`)
+                  }
                 >
                   {portfolioData.contact.email}
                 </p>
@@ -344,7 +423,9 @@ export default function ChatPortfolio() {
       );
     }
 
-    return <p className="whitespace-pre-line text-sm sm:text-base">{message.text}</p>;
+    return (
+      <p className="whitespace-pre-line text-sm sm:text-base">{message.text}</p>
+    );
   };
 
   return (
@@ -516,8 +597,12 @@ export default function ChatPortfolio() {
               )}
             </Button>
           </div>
-          
-          <div className={`${showQuickActions ? 'flex' : 'hidden'} sm:flex flex-wrap gap-2 justify-center`}>
+
+          <div
+            className={`${
+              showQuickActions ? "flex" : "hidden"
+            } sm:flex flex-wrap gap-2 justify-center`}
+          >
             {quickActions.map((action) => {
               const IconComponent = action.icon;
               return (
@@ -556,8 +641,14 @@ export default function ChatPortfolio() {
             </Button>
           </div>
           <p className="text-gray-500 text-xs mt-2 sm:mt-3 text-center">
-            💡 <span className="sm:hidden">Use quick actions or ask me anything!</span>
-            <span className="hidden sm:inline">Try the quick actions above or ask me anything about my development journey!</span>
+            💡{" "}
+            <span className="sm:hidden">
+              Use quick actions or ask me anything!
+            </span>
+            <span className="hidden sm:inline">
+              Try the quick actions above or ask me anything about my
+              development journey!
+            </span>
           </p>
         </div>
       </div>
